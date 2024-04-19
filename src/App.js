@@ -20,21 +20,27 @@ function App() {
   const handleButtonClick = () => {
     var config = qz.configs.create(printer);
 
-    qz.print(config, data).catch(function (e) {
+    qz.print(config, data.split(",")).catch(function (e) {
       console.error(e);
     });
   };
 
   return (
     <div style={{padding : "10px"}}>
+      <div>Select Printer</div>
       <select onChange={(e) => setPrinter(e.target.value)}>
         {
           printers.map((printer) => (
             <option value={printer}>{printer}</option>
           ))}
       </select>
-      <textarea onInput={(e) => setData(e.target.value)}></textarea>
+      <div>Type input</div>
+      <textarea rows={10} onInput={(e) => setData(e.target.value)}></textarea>
+      <div>
+
+   
       <button onClick={handleButtonClick}>Print</button>
+      </div>
     </div>
   );
 }
